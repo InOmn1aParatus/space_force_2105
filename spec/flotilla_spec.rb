@@ -20,13 +20,13 @@ RSpec.describe Flotilla do
   describe 'methods' do
     before :each do
       @seventh_flotilla = Flotilla.new({designation: 'Seventh Flotilla'})
+      @daedalus = Spacecraft.new({name: 'Daedalus', fuel: 400})
     end
 
     it 'adds ships'do
-      daedalus = Spacecraft.new({name: 'Daedalus', fuel: 400})
-      @seventh_flotilla.add_ship(daedalus)
+      @seventh_flotilla.add_ship(@daedalus)
 
-      expect(@seventh_flotilla.ships).to eq([daedalus])
+      expect(@seventh_flotilla.ships).to eq([@daedalus])
     end
 
     it 'adds personnel' do
@@ -35,6 +35,7 @@ RSpec.describe Flotilla do
       kathy.add_specialty(:quantum_mechanics)
       polly = Person.new('Polly Parker', 8)
       polly.add_specialty(:operations)
+      polly.add_specialty(:maintenance)
       rover = Person.new('Rover Henriette', 1)
       rover.add_specialty(:operations)
       rover.add_specialty(:maintenance)
@@ -50,7 +51,7 @@ RSpec.describe Flotilla do
     end
 
     it 'recommends personnel' do
-      expect(@seventh_flotilla.recommend_personnel).to eq(daedalus)
+      expect(@seventh_flotilla.recommend_personnel(@daedalus)).to eq([kathy, sampson])
     end
   end
 end
