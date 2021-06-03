@@ -14,4 +14,13 @@ class Flotilla
   def add_personnel(person)
     @personnel << person
   end
+
+  # def recommend_personnel(ship)
+  #   @personnel.find_all do |person|
+  #     person.specialties.each do |specialty|
+  #       ship.requirements do |req|
+  #       end
+  #     end
+  #   end
+  # end
 end
