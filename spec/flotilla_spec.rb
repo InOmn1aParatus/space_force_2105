@@ -48,5 +48,9 @@ RSpec.describe Flotilla do
 
       expect(@seventh_flotilla.personnel).to eq([kathy, polly, rover, sampson])
     end
+
+    it 'recommends personnel' do
+      expect(@seventh_flotilla.recommend_personnel).to eq(daedalus)
+    end
   end
 end
