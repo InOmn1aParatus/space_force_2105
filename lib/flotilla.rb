@@ -30,4 +30,13 @@ class Flotilla
     end
     recommended.uniq
   end
+
+  def personnel_by_ship
+    # This creates a hash, using the whole ship object as a key
+    personnel_assignments = {}
+    @ships.each do |ship|
+      personnel_assignments[ship] = recommend_personnel(ship)
+    end
+    personnel_assignments
+  end
 end

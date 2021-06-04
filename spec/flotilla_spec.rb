@@ -74,7 +74,7 @@ RSpec.describe Flotilla do
       @seventh_flotilla.add_ship(@odyssey)
 
       expected = {
-        @daedalus => [@kathy, @sampson]
+        @daedalus => [@kathy, @sampson],
         @odyssey => [@polly]
       }
 
