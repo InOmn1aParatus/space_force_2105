@@ -23,6 +23,9 @@ RSpec.describe Flotilla do
       @daedalus = Spacecraft.new({name: 'Daedalus', fuel: 400})
       @daedalus.add_requirement({astrophysics: 6})
       @daedalus.add_requirement({quantum_mechanics: 3})
+      @odyssey = Spacecraft.new({name: 'Odyssey', fuel: 300})
+      @odyssey.add_requirement({operations: 6})
+      @odyssey.add_requirement({maintenance: 3})
       @kathy = Person.new('Kathy Chan', 10)
       @kathy.add_specialty(:astrophysics)
       @kathy.add_specialty(:quantum_mechanics)
@@ -53,7 +56,13 @@ RSpec.describe Flotilla do
     end
 
     it 'recommends personnel' do
+      @seventh_flotilla.add_personnel(@kathy)
+      @seventh_flotilla.add_personnel(@polly)
+      @seventh_flotilla.add_personnel(@rover)
+      @seventh_flotilla.add_personnel(@sampson)
+
       expect(@seventh_flotilla.recommend_personnel(@daedalus)).to eq([@kathy, @sampson])
+      expect(@seventh_flotilla.recommend_personnel(@odyssey)).to eq([@polly])
     end
   end
 end

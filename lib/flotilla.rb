@@ -15,12 +15,19 @@ class Flotilla
     @personnel << person
   end
 
-  # def recommend_personnel(ship)
-  #   @personnel.find_all do |person|
-  #     person.specialties.each do |specialty|
-  #       ship.requirements do |req|
-  #       end
-  #     end
-  #   end
-  # end
+  # Proceed from the information you are trying to access through
+  # the paths you will need to take to access it
+  def recommend_personnel(ship)
+    recommended = []
+    @personnel.each do |person|
+      ship.requirements.each do |req|
+        requirement = req.keys[0]
+        experience = req[requirement]
+        if person.specialties.include?(requirement) && person.experience >= experience
+          recommended << person
+        end
+      end
+    end
+    recommended.uniq
+  end
 end
