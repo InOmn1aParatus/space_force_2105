@@ -33,10 +33,15 @@ class Flotilla
 
   def personnel_by_ship
     # This creates a hash, using the whole ship object as a key
-    personnel_assignments = {}
-    @ships.each do |ship|
-      personnel_assignments[ship] = recommend_personnel(ship)
+  #   personnel_assignments = {}
+  #   @ships.each do |ship|
+  #     personnel_assignments[ship] = recommend_personnel(ship)
+  #   end
+  #   personnel_assignments
+  # end
+    @ships.reduce({}) do |acc, ship|
+      acc[ship] = recommend_personnel(ship) # Would only return the key value (array)
+      acc
     end
-    personnel_assignments
   end
 end
