@@ -64,5 +64,21 @@ RSpec.describe Flotilla do
       expect(@seventh_flotilla.recommend_personnel(@daedalus)).to eq([@kathy, @sampson])
       expect(@seventh_flotilla.recommend_personnel(@odyssey)).to eq([@polly])
     end
+
+    it 'returns personnel by ship' do
+      @seventh_flotilla.add_personnel(@kathy)
+      @seventh_flotilla.add_personnel(@polly)
+      @seventh_flotilla.add_personnel(@rover)
+      @seventh_flotilla.add_personnel(@sampson)
+      @seventh_flotilla.add_ship(@daedalus)
+      @seventh_flotilla.add_ship(@odyssey)
+
+      expected = {
+        @daedalus => [@kathy, @sampson]
+        @odyssey => [@polly]
+      }
+
+      expect(@seventh_flotilla.personnel_by_ship).to eq(expected)
+    end
   end
 end
